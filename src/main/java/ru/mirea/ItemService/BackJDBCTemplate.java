@@ -25,10 +25,9 @@ public class BackJDBCTemplate {
 
     public List<Item> deleteItem(int id) {
         try {
-            jdbcTemplate.update("DELETE FROM Cart WHERE id=?",id);
+            jdbcTemplate.update("DELETE FROM Item WHERE id=?",id);
         }catch(DataAccessException dataAccessException){
         }
-
         return jdbcTemplate.query("select * from Item", (ResultSet resultSet, int rowNum) -> {
             return new Item(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("type"), resultSet.getInt("count"), resultSet.getDouble("price"));
         });
