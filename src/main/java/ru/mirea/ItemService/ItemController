@@ -1,0 +1,49 @@
+package ru.mirea.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Controller
+public class ItemController {
+
+    @Autowired
+    private BackJDBCTemplate backJDBCTemplate;
+
+    @RequestMapping(value = "get_items", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Item> get_items() {
+        System.out.println("controller");
+        List<Item> listI= backJDBCTemplate.geItems();
+        System.out.println(listI.get(0));
+        return listI;
+    }
+
+    @RequestMapping(value = "delete_item/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public List<Item> delete_item(@PathVariable int id ) {
+        return backJDBCTemplate.deleteItem(id);
+    }
+
+//    @PostMapping("/api")
+//    public ResponseEntity<Resp> doSomething(@RequestBody ReqBody reqBody){
+//        Resp resp = null;
+//        switch (reqBody.getMethod()){
+//            case "get":{
+//                resp = new Resp(reqBody.getMethod(), true, backJDBCTemplate.geItems());
+//                break;
+//            }
+//            case "delete":{
+//                resp = new Resp(reqBody.getMethod(), true, backJDBCTemplate.deleteItem(reqBody.getPost().getId()));
+//                break;
+//            }
+//            default:{
+//                break;
+//            }
+//        }
+//        return new ResponseEntity<Resp>(resp, HttpStatus.OK);
+//    }
+}
