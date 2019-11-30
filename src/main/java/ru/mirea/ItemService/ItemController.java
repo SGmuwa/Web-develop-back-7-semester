@@ -16,10 +16,7 @@ public class ItemController {
     @RequestMapping(value = "get_items", method = RequestMethod.GET)
     @ResponseBody
     public List<Item> get_items() {
-        System.out.println("controller");
-        List<Item> listI= backJDBCTemplate.geItems();
-        System.out.println(listI.get(0));
-        return listI;
+        return backJDBCTemplate.geItems();
     }
 
     @RequestMapping(value = "delete_item/{id}", method = RequestMethod.DELETE)
@@ -44,6 +41,7 @@ public class ItemController {
 //                break;
 //            }
 //        }
+//        System.out.println(resp.getMethod()+"   "+resp.getItem());
 //        return new ResponseEntity<Resp>(resp, HttpStatus.OK);
 //    }
 }

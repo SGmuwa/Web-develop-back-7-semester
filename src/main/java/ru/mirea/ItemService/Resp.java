@@ -32,11 +32,11 @@ public class Resp {
         this.status = status;
     }
 
-    public List<Item> getBook() {
+    public List<Item> getItem() {
         return item;
     }
 
-    public void setBook(List<Item> item) {
+    public void setItem(List<Item> item) {
         this.item = item;
     }
 }
