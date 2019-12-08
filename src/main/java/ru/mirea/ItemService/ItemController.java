@@ -28,8 +28,23 @@ public class ItemController {
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     @ResponseBody
-    public void put_item(@RequestBody Map<String, String> pet){
-        backJDBCTemplate.putItem(pet.get("name"), pet.get("type"), pet.get("count"), pet.get("price"));
+    public ResponseEntity<?> put_item(@RequestBody Map<String, ?> pet){
+        if(pet.containsKey("name")
+                && pet.containsKey("type")
+                && pet.containsKey("count")
+                && pet.containsKey("price")
+                && pet.get("name") instanceof String
+                && pet.get("type") instanceof String
+                && pet.get("count") instanceof Integer
+                && pet.get("price") instanceof Double) {
+            backJDBCTemplate.putItem(
+                    (String) pet.get("name"),
+                    (String) pet.get("type"),
+                    (Integer) pet.get("count"),
+                    (Double) pet.get("price"));
+            return ResponseEntity.ok().build();
+        }
+        else return ResponseEntity.badRequest().build();
     }
 
 //    @PostMapping("/api")
