@@ -25,6 +25,12 @@ public class ItemController {
         return backJDBCTemplate.deleteItem(id);
     }
 
+    @RequestMapping(value = "update_item/{name}/{type}/{count}/{price}", method = RequestMethod.GET)
+    @ResponseBody
+    public void update_item(@PathVariable String name, @PathVariable String type, @PathVariable int count, @PathVariable double price){
+        backJDBCTemplate.updateItem(name, type, count, price);
+    }
+
 //    @PostMapping("/api")
 //    public ResponseEntity<Resp> doSomething(@RequestBody ReqBody reqBody){
 //        Resp resp = null;
