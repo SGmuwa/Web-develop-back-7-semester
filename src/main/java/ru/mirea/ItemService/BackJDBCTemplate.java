@@ -32,7 +32,10 @@ public class BackJDBCTemplate {
             return new Item(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("type"), resultSet.getInt("count"), resultSet.getDouble("price"));
         });
     }
-    public void updateItem(String name, String type, int count, double price){
-        jdbcTemplate.update("INSERT INTO Item( name,type,count,price) VALUES (?, ?,?, ?)", name, type, count, price);
+    public void putItem(String name, String type, int count, double price) {
+        jdbcTemplate.update("INSERT INTO Item( name,type,count,price) VALUES (?, ?, ?, ?)", name, type, count, price);
+    }
+    public void putItem(String name, String type, String count, String price) {
+        jdbcTemplate.update("INSERT INTO Item( name,type,count,price) VALUES (?, ?, ?, ?)", name, type, count, price);
     }
 }

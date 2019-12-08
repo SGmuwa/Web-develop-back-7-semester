@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ItemController {
@@ -25,10 +26,10 @@ public class ItemController {
         return backJDBCTemplate.deleteItem(id);
     }
 
-    @RequestMapping(value = "update_item/{name}/{type}/{count}/{price}", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.PUT)
     @ResponseBody
-    public void update_item(@PathVariable String name, @PathVariable String type, @PathVariable int count, @PathVariable double price){
-        backJDBCTemplate.updateItem(name, type, count, price);
+    public void put_item(@RequestBody Map<String, String> pet){
+        backJDBCTemplate.putItem(pet.get("name"), pet.get("type"), pet.get("count"), pet.get("price"));
     }
 
 //    @PostMapping("/api")
