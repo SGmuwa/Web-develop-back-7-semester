@@ -16,23 +16,19 @@ public class BackJDBCTemplate {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Item> geItems() {
-        System.out.println("jdbcTemplate");
-        return jdbcTemplate.query("select * from Item", (ResultSet resultSet, int rowNum) -> {
-            return new Item(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("type"), resultSet.getInt("count"), resultSet.getDouble("price"));
-        });
+    List<Item> geItems() {
+        return jdbcTemplate.query("select * from Item", (ResultSet resultSet, int rowNum)
+                -> new Item(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("type"), resultSet.getInt("count"), resultSet.getDouble("price"))
+        );
     }
 
-    public List<Item> deleteItem(int id) {
+    void deleteItem(int id) {
         try {
             jdbcTemplate.update("DELETE FROM Item WHERE id=?",id);
         }catch(DataAccessException dataAccessException){
         }
-        return jdbcTemplate.query("select * from Item", (ResultSet resultSet, int rowNum) -> {
-            return new Item(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("type"), resultSet.getInt("count"), resultSet.getDouble("price"));
-        });
     }
-    public void putItem(String name, String type, int count, double price) {
+    void putItem(String name, String type, int count, double price) {
         jdbcTemplate.update("INSERT INTO Item( name,type,count,price) VALUES (?, ?, ?, ?)", name, type, count, price);
     }
     public void putItem(String name, String type, String count, String price) {

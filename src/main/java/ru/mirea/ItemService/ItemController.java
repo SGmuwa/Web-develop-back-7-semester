@@ -13,16 +13,16 @@ public class ItemController {
     @Autowired
     private BackJDBCTemplate backJDBCTemplate;
 
-    @RequestMapping(value = "get_items", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     public List<Item> get_items() {
         return backJDBCTemplate.geItems();
     }
 
-    @RequestMapping(value = "delete_item/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public List<Item> delete_item(@PathVariable int id ) {
-        return backJDBCTemplate.deleteItem(id);
+    public void delete_item(@PathVariable int id ) {
+        backJDBCTemplate.deleteItem(id);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
@@ -34,13 +34,17 @@ public class ItemController {
                 && pet.containsKey("price")
                 && pet.get("name") instanceof String
                 && pet.get("type") instanceof String
-                && pet.get("count") instanceof Integer
-                && pet.get("price") instanceof Double) {
+                && pet.get("count") instanceof Integer) {
+            double price;
+            if(pet.get("price") instanceof Integer)
+                price = (Integer) pet.get("price");
+            else
+                price = (Double) pet.get("price");
             backJDBCTemplate.putItem(
                     (String) pet.get("name"),
                     (String) pet.get("type"),
                     (Integer) pet.get("count"),
-                    (Double) pet.get("price"));
+                    price);
             return ResponseEntity.ok().build();
         }
         else return ResponseEntity.badRequest().build();
