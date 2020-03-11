@@ -1,0 +1,35 @@
+name: Deploy on any Push event
+on:
+  push:
+    tags:
+      - '!refs/tags/*'
+    branches:
+      - '*'
+jobs:
+  deploy:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@master
+        name: Clone repository
+        with:
+          ref: "cicd"
+      - uses: actions/heroku@master
+        name: Heroku build
+        with:
+          args: "container:login"
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API }}
+      - uses: actions/heroku@master
+        name: Heroku push
+        with:
+          args: "container:push web"
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API }}
+          HEROKU_APP: ${{ secrets.HEROKU_APP }}
+      - uses: actions/heroku@master
+        name: Heroku deploy
+        with:
+          args: "container:release web"
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API }}
+          HEROKU_APP: ${{ secrets.HEROKU_APP }}
