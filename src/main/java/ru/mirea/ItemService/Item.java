@@ -22,6 +22,12 @@ public class Item {
         this.count = count;
         this.price = price;
     }
+    public Item(String name, String type, int count, double price) {
+        this.name = name;
+        this.type = type;
+        this.count = count;
+        this.price = price;
+    }
     public int getId() {
         return id;
     }

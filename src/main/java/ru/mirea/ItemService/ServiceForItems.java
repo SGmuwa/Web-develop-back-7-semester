@@ -28,7 +28,6 @@ public class ServiceForItems {
     public String greet() {
         return "Hello, Mock";
     }
-
     public Item getById(int id) {
         return itConnect.getById(id);
     }
