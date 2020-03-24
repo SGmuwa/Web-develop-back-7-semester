@@ -13,10 +13,11 @@ public class ItemController {
     @Autowired
     private ServiceForItems itemS;
 
-    @RequestMapping("/greeting")
+    @RequestMapping(value = "/greeting" , method = RequestMethod.GET)
     public @ResponseBody String greeting() {
         return itemS.greet();
     }
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     public List<Item> get_items() {

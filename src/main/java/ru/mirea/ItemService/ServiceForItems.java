@@ -26,6 +26,6 @@ public class ServiceForItems {
                 price);
     }
     public String greet() {
-        return "Hello, World";
+        return "Hello, Mock";
     }
 }
