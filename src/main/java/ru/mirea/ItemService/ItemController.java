@@ -11,18 +11,22 @@ import java.util.Map;
 public class ItemController {
 
     @Autowired
-    private BackJDBCTemplate backJDBCTemplate;
+    private ServiceForItems itemS;
 
+    @RequestMapping("/greeting")
+    public @ResponseBody String greeting() {
+        return itemS.greet();
+    }
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     public List<Item> get_items() {
-        return backJDBCTemplate.geItems();
+        return itemS.geItems();
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void delete_item(@PathVariable int id ) {
-        backJDBCTemplate.deleteItem(id);
+        itemS.deleteItem(id);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
@@ -40,7 +44,7 @@ public class ItemController {
                 price = (Integer) pet.get("price");
             else
                 price = (Double) pet.get("price");
-            backJDBCTemplate.putItem(
+            itemS.putItem(
                     (String) pet.get("name"),
                     (String) pet.get("type"),
                     (Integer) pet.get("count"),

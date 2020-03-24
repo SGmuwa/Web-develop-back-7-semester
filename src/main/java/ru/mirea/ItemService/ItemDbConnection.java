@@ -8,11 +8,11 @@ import java.sql.ResultSet;
 import java.util.List;
 
 @Component
-public class BackJDBCTemplate {
+public class ItemDbConnection {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public BackJDBCTemplate(JdbcTemplate jdbcTemplate) {
+    public ItemDbConnection(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
