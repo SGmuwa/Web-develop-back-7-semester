@@ -22,16 +22,28 @@ public class ItemDbConnection {
         );
     }
 
-    void deleteItem(int id) {
+    public void deleteItem(int id) {
         try {
             jdbcTemplate.update("DELETE FROM Item WHERE id=?",id);
         }catch(DataAccessException dataAccessException){
         }
     }
-    void putItem(String name, String type, int count, double price) {
+    public void putItem(String name, String type, int count, double price) {
         jdbcTemplate.update("INSERT INTO Item( name,type,count,price) VALUES (?, ?, ?, ?)", name, type, count, price);
     }
+
     public void putItem(String name, String type, String count, String price) {
         jdbcTemplate.update("INSERT INTO Item( name,type,count,price) VALUES (?, ?, ?, ?)", name, type, count, price);
+    }
+
+    public Item getById(int id) {
+        Item item = null;
+        try {
+            item = jdbcTemplate.queryForObject("select * from Item where id = ?", new Object[]{id}, (ResultSet resultSet, int rowNum) -> {
+                return new Item(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("type"),resultSet.getInt("count"),resultSet.getDouble("price") );
+            });
+        } catch (DataAccessException dataAccessException) {
+        }
+        return item;
     }
 }

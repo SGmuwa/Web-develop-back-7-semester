@@ -18,21 +18,27 @@ public class ItemController {
         return itemS.greet();
     }
 
+    @RequestMapping(value = "getById/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Item getById(@PathVariable int id) {
+        return itemS.getById(id);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
-    public List<Item> get_items() {
+    public List<Item> getItems() {
         return itemS.geItems();
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void delete_item(@PathVariable int id ) {
+    public void deleteItem(@PathVariable int id ) {
         itemS.deleteItem(id);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<?> put_item(@RequestBody Map<String, ?> pet){
+    public ResponseEntity<?> putItem(@RequestBody Map<String, ?> pet){
         if(pet.containsKey("name")
                 && pet.containsKey("type")
                 && pet.containsKey("count")
