@@ -1,17 +1,17 @@
 package ru.mirea.ItemService;
 
-import org.junit.jupiter.api.BeforeEach;
+import net.minidev.json.JSONValue;
 import org.junit.jupiter.api.Test;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ItemController.class)
-class ControllerGreetingTest {
+class ControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -44,7 +44,11 @@ class ControllerGreetingTest {
                 .putItem("1", "2", 3, 4.0);
 
         this.mockMvc.perform(
-                put("/", new Item("2", "3", 4, 5.0)))
+                put("/")
+                        .content(JSONValue.toJSONString(
+                                new Item("1", "2", 3, 4.0)))
+                        .characterEncoding("UTF-8")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         assertTrue(isItemInList[0]);
