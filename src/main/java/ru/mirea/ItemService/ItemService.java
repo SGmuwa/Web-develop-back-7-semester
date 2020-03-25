@@ -26,7 +26,7 @@ public class ItemService {
                 price);
     }
     public String greet() {
-        return "Hello, Mock";
+        return "Greetings!";
     }
     public Item getById(int id) {
         return itConnect.getById(id);
