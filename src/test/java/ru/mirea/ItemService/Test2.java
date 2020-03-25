@@ -53,7 +53,7 @@ public class Test2 {
     public void findByIdTest() throws Exception {
         Item item = new Item(1, "dog", "pet", 3, 15);
         given(service.getById(1)).willReturn(item);
-        this.mockMvc.perform(get("/getById/1"))
+        this.mockMvc.perform(get("/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'id': 1,'name': 'dog','type':'pet','count':3,'price': 15.0}"));
     }
