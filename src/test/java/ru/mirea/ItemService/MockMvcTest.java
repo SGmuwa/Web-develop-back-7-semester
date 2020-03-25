@@ -1,4 +1,5 @@
 package ru.mirea.ItemService;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ItemController.class)
-public class ControllerTest {
+public class MockMvcTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -25,9 +26,14 @@ public class ControllerTest {
     @MockBean
     private ServiceForItems service;
 
+    @BeforeAll
+    public void init()
+    {
+        when(service.greet()).thenReturn("Hello, Mock123");
+    }
+
     @Test
     public void test2() throws Exception {
-        when(service.greet()).thenReturn("Hello, Mock123");
         this.mockMvc.perform(get("/greeting"))
                 .andDo(print())
                 .andExpect(status().isOk())
