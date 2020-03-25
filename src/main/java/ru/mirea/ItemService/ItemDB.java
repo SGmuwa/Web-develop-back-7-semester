@@ -14,7 +14,7 @@ public class ItemDB {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void init() {
+    void init() {
         // init db инициализация базы данных
         jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS Item(id int NOT NULL PRIMARY KEY AUTO_INCREMENT ,name VARCHAR , type VARCHAR,count int, price DOUBLE )");
 

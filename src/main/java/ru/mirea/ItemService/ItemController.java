@@ -1,6 +1,5 @@
 package ru.mirea.ItemService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +10,11 @@ import java.util.Map;
 @Controller
 public class ItemController {
 
-    @Autowired
-    private ItemService itemS;
+    private final ItemService itemS;
+
+    public ItemController(ItemService itemS) {
+        this.itemS = itemS;
+    }
 
     @RequestMapping(value = "/greeting", method = RequestMethod.GET)
     public @ResponseBody

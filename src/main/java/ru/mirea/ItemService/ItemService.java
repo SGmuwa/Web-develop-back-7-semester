@@ -1,6 +1,5 @@
 package ru.mirea.ItemService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,32 +8,31 @@ import java.util.List;
 public class ItemService {
     private ItemDbConnection itConnect;
 
-    @Autowired
     public ItemService(ItemDbConnection itConnect) {
         this.itConnect = itConnect;
     }
 
-    public List<Item> geItems() {
+    List<Item> geItems() {
         return itConnect.geItems();
     }
 
-    public void deleteItem(int id) {
+    void deleteItem(int id) {
         itConnect.deleteItem(id);
     }
 
-    public void putItem(String name, String type, Integer count, double price) {
+    void putItem(String name, String type, Integer count, double price) {
         itConnect.putItem(
-                (String) name,
-                (String) type,
-                (Integer) count,
+                name,
+                type,
+                count,
                 price);
     }
 
-    public String greet() {
+    String greet() {
         return "Greetings!";
     }
 
-    public Item getById(int id) {
+    Item getById(int id) {
         return itConnect.getById(id);
     }
 }
