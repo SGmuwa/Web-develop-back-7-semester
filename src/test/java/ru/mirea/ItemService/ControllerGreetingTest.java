@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ItemController.class)
-class MockMvcTest {
+class ControllerGreetingTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -29,7 +29,7 @@ class MockMvcTest {
     }
 
     @Test
-    void test2() throws Exception {
+    void greetingTest() throws Exception {
         this.mockMvc.perform(get("/greeting"))
                 .andDo(print())
                 .andExpect(status().isOk())
