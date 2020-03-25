@@ -18,7 +18,7 @@ public class ItemController {
         return itemS.greet();
     }
 
-    @RequestMapping(value = "getById/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     @ResponseBody
     public Item getById(@PathVariable int id) {
         return itemS.getById(id);
