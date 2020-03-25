@@ -60,24 +60,4 @@ public class ItemController {
         }
         else return ResponseEntity.badRequest().build();
     }
-
-//    @PostMapping("/api")
-//    public ResponseEntity<Resp> doSomething(@RequestBody ReqBody reqBody){
-//        Resp resp = null;
-//        switch (reqBody.getMethod()){
-//            case "get":{
-//                resp = new Resp(reqBody.getMethod(), true, backJDBCTemplate.geItems());
-//                break;
-//            }
-//            case "delete":{
-//                resp = new Resp(reqBody.getMethod(), true, backJDBCTemplate.deleteItem(reqBody.getPost().getId()));
-//                break;
-//            }
-//            default:{
-//                break;
-//            }
-//        }
-//        System.out.println(resp.getMethod()+"   "+resp.getItem());
-//        return new ResponseEntity<Resp>(resp, HttpStatus.OK);
-//    }
 }
