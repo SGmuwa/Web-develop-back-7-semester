@@ -80,8 +80,8 @@ public class Test2 {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+l.size());
         assertEquals(item.getName(),l.get(l.size()-1).getName());
         assertEquals(item.getType(),l.get(l.size()-1).getType());
+        assertEquals(item.getPrice(),l.get(l.size()-1).getPrice(), 0.0);
         assertEquals(item.getCount(),l.get(l.size()-1).getCount());
-        assertEquals(item.getPrice(),l.get(l.size()-1).getPrice());
 
     }
 }
