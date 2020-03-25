@@ -11,7 +11,7 @@ import java.util.Map;
 public class ItemController {
 
     @Autowired
-    private ServiceForItems itemS;
+    private ItemService itemS;
 
     @RequestMapping(value = "/greeting" , method = RequestMethod.GET)
     public @ResponseBody String greeting() {

@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ServiceForItems {
+public class ItemService {
     private ItemDbConnection itConnect;
     @Autowired
-    public ServiceForItems(ItemDbConnection itConnect){
+    public ItemService(ItemDbConnection itConnect){
         this.itConnect = itConnect;
     }
     public List<Item> geItems() {

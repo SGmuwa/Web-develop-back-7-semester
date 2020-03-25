@@ -1,7 +1,6 @@
 package ru.mirea.ItemService;
 
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -48,7 +47,7 @@ public class Test2 {
     private MockMvc mockMvc;
 
     @MockBean
-    private ServiceForItems service;
+    private ItemService service;
 
     @Test
     public void findByIdTest() throws Exception {
