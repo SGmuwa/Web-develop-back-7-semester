@@ -8,16 +8,20 @@ import java.util.List;
 @Service
 public class ItemService {
     private ItemDbConnection itConnect;
+
     @Autowired
-    public ItemService(ItemDbConnection itConnect){
+    public ItemService(ItemDbConnection itConnect) {
         this.itConnect = itConnect;
     }
+
     public List<Item> geItems() {
         return itConnect.geItems();
     }
+
     public void deleteItem(int id) {
         itConnect.deleteItem(id);
     }
+
     public void putItem(String name, String type, Integer count, double price) {
         itConnect.putItem(
                 (String) name,
@@ -25,9 +29,11 @@ public class ItemService {
                 (Integer) count,
                 price);
     }
+
     public String greet() {
         return "Greetings!";
     }
+
     public Item getById(int id) {
         return itConnect.getById(id);
     }

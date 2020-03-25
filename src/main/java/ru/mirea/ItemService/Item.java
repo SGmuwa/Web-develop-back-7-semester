@@ -1,4 +1,5 @@
 package ru.mirea.ItemService;
+
 public class Item {
     private int id;
     private String name;
@@ -22,12 +23,14 @@ public class Item {
         this.count = count;
         this.price = price;
     }
+
     public Item(String name, String type, int count, double price) {
         this.name = name;
         this.type = type;
         this.count = count;
         this.price = price;
     }
+
     public int getId() {
         return id;
     }
@@ -40,7 +43,9 @@ public class Item {
         return count;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     public void setId(int id) {
         this.id = id;

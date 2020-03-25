@@ -28,7 +28,7 @@ public class RequestFilter implements Filter {
         response.setHeader("Access-Control-Allow-Credentials", "true");
         try {
             chain.doFilter(req, res);
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

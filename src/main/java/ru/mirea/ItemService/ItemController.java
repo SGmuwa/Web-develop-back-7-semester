@@ -1,4 +1,5 @@
 package ru.mirea.ItemService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,9 @@ public class ItemController {
     @Autowired
     private ItemService itemS;
 
-    @RequestMapping(value = "/greeting" , method = RequestMethod.GET)
-    public @ResponseBody String greeting() {
+    @RequestMapping(value = "/greeting", method = RequestMethod.GET)
+    public @ResponseBody
+    String greeting() {
         return itemS.greet();
     }
 
@@ -32,14 +34,14 @@ public class ItemController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteItem(@PathVariable int id ) {
+    public void deleteItem(@PathVariable int id) {
         itemS.deleteItem(id);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<?> putItem(@RequestBody Map<String, ?> pet){
-        if(pet.containsKey("name")
+    public ResponseEntity<?> putItem(@RequestBody Map<String, ?> pet) {
+        if (pet.containsKey("name")
                 && pet.containsKey("type")
                 && pet.containsKey("count")
                 && pet.containsKey("price")
@@ -47,7 +49,7 @@ public class ItemController {
                 && pet.get("type") instanceof String
                 && pet.get("count") instanceof Integer) {
             double price;
-            if(pet.get("price") instanceof Integer)
+            if (pet.get("price") instanceof Integer)
                 price = (Integer) pet.get("price");
             else
                 price = (Double) pet.get("price");
@@ -57,7 +59,6 @@ public class ItemController {
                     (Integer) pet.get("count"),
                     price);
             return ResponseEntity.ok().build();
-        }
-        else return ResponseEntity.badRequest().build();
+        } else return ResponseEntity.badRequest().build();
     }
 }

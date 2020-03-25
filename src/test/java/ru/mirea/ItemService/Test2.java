@@ -57,13 +57,14 @@ public class Test2 {
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'id': 1,'name': 'dog','type':'pet','count':3,'price': 15.0}"));
     }
+
     @Test
     public void findAllTest() throws Exception {
         Item item1 = new Item(1, "dog", "pet", 3, 15);
         Item item2 = new Item(2, "cat", "pet", 3, 13);
         Item item3 = new Item(3, "cat food", "stuff", 4, 10);
         Item item4 = new Item(4, "dog food", "stuff", 3, 10);
-        List<Item> stocks = Arrays.asList(item1,item2,item3,item4);
+        List<Item> stocks = Arrays.asList(item1, item2, item3, item4);
         given(service.geItems()).willReturn(stocks);
 
         this.mockMvc.perform(get("/"))
@@ -74,13 +75,13 @@ public class Test2 {
     @Test
     public void putByIdTest() throws Exception {
         Item item = new Item("Polina", "people", 1, 1000);
-        service.putItem(item.getName(),item.getType(),item.getCount(),item.getPrice());
+        service.putItem(item.getName(), item.getType(), item.getCount(), item.getPrice());
         List<Item> l = service.geItems();
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+l.size());
-        assertEquals(item.getName(),l.get(l.size()-1).getName());
-        assertEquals(item.getType(),l.get(l.size()-1).getType());
-        assertEquals(item.getPrice(),l.get(l.size()-1).getPrice(), 0.0);
-        assertEquals(item.getCount(),l.get(l.size()-1).getCount());
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + l.size());
+        assertEquals(item.getName(), l.get(l.size() - 1).getName());
+        assertEquals(item.getType(), l.get(l.size() - 1).getType());
+        assertEquals(item.getPrice(), l.get(l.size() - 1).getPrice(), 0.0);
+        assertEquals(item.getCount(), l.get(l.size() - 1).getCount());
 
     }
 }
