@@ -4,7 +4,7 @@ on:
     tags:
       - '!refs/tags/*'
     branches:
-      - '*'
+      - 'master'
 jobs:
   deploy:
     runs-on: [ubuntu-latest]
