@@ -11,8 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
         name: Clone repository
-        with:
-          ref: "cicd"
       - uses: actions/heroku@master
         name: Heroku build
         with:
